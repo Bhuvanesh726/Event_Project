@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          # Pulling the image GitHub created
+          image: bhuvanesh726/event-backend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://mysql:3306/cicd_db"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "root"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "BoDmAs@12"
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: "update"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  type: LoadBalancer
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 8085 # External Port
+      targetPort: 8081 # Internal Port

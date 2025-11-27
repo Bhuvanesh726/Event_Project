@@ -1,0 +1,17 @@
+---
+- name: Automate Kubernetes Deployment
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Apply Database Deployment
+      command: kubectl apply -f k8s/mysql.yaml
+
+    - name: Apply Backend Deployment
+      command: kubectl apply -f k8s/backend.yaml
+
+    - name: Apply Frontend Deployment
+      command: kubectl apply -f k8s/frontend.yaml
+
+    - name: Wait for Pods to be Ready
+      command: kubectl wait --for=condition=ready pod --all --timeout=120s
+
