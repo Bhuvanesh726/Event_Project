@@ -1,0 +1,44 @@
+
+
+services:
+  # 1. Database Service (MySQL)
+  mysql:
+    image: mysql:8.0
+    container_name: event-db
+    environment:
+      # Using the password you provided
+      MYSQL_ROOT_PASSWORD: "BoDmAs@12"
+      # Using the database name from your screenshot
+      MYSQL_DATABASE: cicd_db
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  # 2. Backend Service (Spring Boot)
+  backend:
+    build: ./backend
+    container_name: event-backend
+    ports:
+      - "8085:8081"
+    environment:
+      # Connecting to the 'mysql' service defined above
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cicd_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: "BoDmAs@12"
+      # This ensures Hibernate updates your schema automatically
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - mysql
+
+  # 3. Frontend Service (React/Vite)
+  frontend:
+    build: ./frontend
+    container_name: event-frontend
+    ports:
+      - "9096:5173"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:

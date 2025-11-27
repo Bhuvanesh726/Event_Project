@@ -7,8 +7,8 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        {/* Added basename for Tomcat deployment */}
-        <Router basename="/event-app">
+        {/* REMOVED basename="/eventapp" to match the root URL configuration */}
+        <Router>
             <AuthProvider>
                 <App />
             </AuthProvider>
