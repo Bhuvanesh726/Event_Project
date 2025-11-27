@@ -7,9 +7,8 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        {/* Router must be the top-level component */}
-        <Router>
-            {/* AuthProvider goes inside Router */}
+        {/* Added basename for Tomcat deployment */}
+        <Router basename="/event-app">
             <AuthProvider>
                 <App />
             </AuthProvider>
