@@ -47,7 +47,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         // CHANGED: Added your deployed frontend's origin
         configuration.setAllowedOrigins(List.of("http://localhost:9090", "http://localhost:5173",
-                "http://localhost:9096", "http://localhost:30006"));
+                "http://localhost:9096", "http://localhost:30006", "http://localhost:30010"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         // CHANGED: Allowed all headers for better compatibility
         configuration.setAllowedHeaders(List.of("*"));
