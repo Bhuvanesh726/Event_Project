@@ -14,7 +14,6 @@ spec:
     spec:
       containers:
         - name: backend
-          # Pulling the image GitHub created
           image: bhuvanesh726/event-backend:latest
           imagePullPolicy: Always
           ports:
@@ -34,10 +33,12 @@ kind: Service
 metadata:
   name: backend
 spec:
-  type: LoadBalancer
+  # CHANGED: Use NodePort for explicit port mapping
+  type: NodePort
   selector:
     app: backend
   ports:
     - protocol: TCP
-      port: 8085 # External Port
-      targetPort: 8081 # Internal Port
+      port: 8081 # Internal Cluster Port
+      targetPort: 8081 # Container Port
+      nodePort: 30005 # EXTERNAL PORT (Windows)
