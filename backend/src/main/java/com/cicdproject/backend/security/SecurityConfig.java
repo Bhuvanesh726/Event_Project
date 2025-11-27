@@ -52,7 +52,7 @@ public class SecurityConfig {
          * "http://localhost:9096", "http://localhost:30006",
          * "http://localhost:30010"));
          */
-        configuration.setAllowedOrigins(List.of("*"));
+        configuration.setAllowedOriginPatterns(List.of("*"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         // CHANGED: Allowed all headers for better compatibility
         configuration.setAllowedHeaders(List.of("*"));
