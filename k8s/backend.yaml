@@ -41,5 +41,5 @@ spec:
     - protocol: TCP
       port: 8081 # Internal Cluster Port
       targetPort: 8081 # Container Port
-      #nodePort: 30005 # Kubernets EXTERNAL PORT
-      nodePort: 30020 # Ansible EXTERNAL PORT 
+      nodePort: 30005 # Kubernets EXTERNAL PORT
+      #nodePort: 30020 # Ansible EXTERNAL PORT 

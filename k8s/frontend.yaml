@@ -21,8 +21,8 @@ spec:
           # IMPORTANT: Pointing to the new Backend NodePort
           env:
             - name: VITE_API_BASE_URL
-              #value: "http://localhost:30005" # Kubernets EXTERNAL PORT
-              value: "http://localhost:30020" # Ansible EXTERNAL PORT
+              value: "http://localhost:30005" # Kubernets EXTERNAL PORT
+              #value: "http://localhost:30020" # Ansible EXTERNAL PORT
 ---
 apiVersion: v1
 kind: Service
